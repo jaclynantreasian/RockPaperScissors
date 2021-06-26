@@ -1,45 +1,75 @@
 
-function game(){
-    let n = 5
-    for (let i = 0; i <= n; i++);
 
-function computerPlay(arr){
-    const randomItem = Math.floor(Math.random() * game.length);
-    const item = arr[randomItem];
-    return item;  
-}
-
-const g = ["rock", "paper", "scissors"];
-const computerSelection = computerPlay(g);
-
-let playerSelection = prompt("Rock, Paper or Scissors?");
-const playS = playerSelection.toLowerCase();
-
-
-function playRound(playerSelection, computerSelection){
-    const playerWin = (playS == "rock" && computerSelection == "scissors") || (playS == "paper" && computerSelection == "rock") || (playS == "scissors" && computerSelection == "paper")
-    const playerLose = (computerSelection == "scissors" && playS == "paper") || (computerSelection == "paper" && playS == "rock") || (computerSelection == "rock" && playerSelection.toLowerCase() == "scissors");
-    if(playS == computerSelection){
-        return "you tied! Try again!"
+    const g = ["rock", "paper", "scissors"];
+    function computerPlay(arr){
+        const randomItem = Math.floor(Math.random() * g.length);
+        const item = arr[randomItem];
+        return item;  
     }
+   
+    function playRound(PS, CS){
+        const playerWin = (PS == "rock" && CS == "scissors") || (PS == "paper" && CS == "rock") || (PS == "scissors" && CS == "paper")
+        const playerLose = (CS == "scissors" && PS == "paper") || (CS == "paper" && PS == "rock") || (CS == "rock" && PS == "scissors");
+        if(PS == CS){
+            return {
+                message: "you tied! Try again!",
+                response: "tie"
+            };           
+        }   
 
-   else  if (playerWin){
-         return `You Win! ${computerSelection} beats ${playerSelection}`;
-     }
+         else  if (playerWin){
+            return {
+                message: `You Win! ${PS} beats ${CS}`,
+                response: "win"
+            };
+        }
 
-    else if (playerLose){
-        return `You Lose! ${playerSelection} beats ${computerSelection}`;
-     }    
+        else if (playerLose){
+            return {
+                message:`You Lose! ${CS} beats ${PS}`,
+                response:  "lose"
+            };
+        }    
 
-   else {
-       return "Please type rock, paper or scissors";
-   }
-}
-console.log(playerWin, playerLose)
-    playRound();
-}
+        else {
+             return {
+                 message: "Please type rock, paper or scissors",
+                 response: "error"
+             };
+        }
+    }
+    
+    function game(){
+        const n = 5;
+        let i = 0;
+        let gameResult = [];
+        while (i < n){
+            const computerSelection = computerPlay(g);
+            let playerSelection = prompt("Rock, Paper or Scissors?");
+            const playS = playerSelection.toLowerCase();
+            let result = playRound(playS, computerSelection);
+            console.log(result.message);
+            if (result.response == "error" || result.response == "tie"){
+                continue
+            }
+            else {
+                i++;
+                gameResult.push(result.response);
+            }
+        }
+        
+        const wins = gameResult.filter((f)=> f == "win").length;
+        const lose = gameResult.filter((f)=> f == "lose").length;
+        if(wins > lose){
+            console.log(`You win! Score: Win: ${wins}  Lose: ${lose}`)
+        }
+        
+        else if (lose > wins){
+            console.log(`You lose! Score: Win: ${wins}  Lose: ${lose}`)
+        }
 
-console.log(playRound(playS, computerSelection));
-
-
-// create new function called game and loop over function playRound 5 times
+        else {
+            console.log(`You tied! Score: Win: ${wins}  Lose: ${lose}`)
+        }
+    }
+    game();
