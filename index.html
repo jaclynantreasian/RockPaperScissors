@@ -1,2 +1,71 @@
-<script src="main.js"></script>
-<h1> ROCK, PAPER, SCISSORS</h1>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Montserrat:wght@400;700&family=Work+Sans:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+
+    <main class = "container">
+      <div class = "inner">
+
+        <h1 class= "main--heading">Rock Paper Scissors!</h1>
+        <h3 class ="heading--2">First to 5 Wins!</h3>
+
+        <div class="results__container">
+          <div class="score__box">
+            <div class="results">boom</div>
+          </div>
+        </div>
+
+        <section class= "row">
+
+          <div class="btn btn--rock" id="rock">
+            <img class = "player--img" src="img/rock.png" alt="rock" />
+            <!---  <h4 class="subheading rock">rock</h4> --->
+          </div>
+
+          <div class="btn btn--paper" id="paper">
+            <img class = "player--img" src="img/paper.png" alt="paper" />
+            <!--- <h4 class="subheading paper">paper</h4> --->
+          </div>
+
+          <div class="btn btn--scissors" id="scissors">
+            <img class = "player--img" src="img/scissors.png" alt="scissors" />
+            <!---<h4 class="subheading scissors">scissors</h4> --->        
+          </div>
+
+        </section>
+
+        <section class= "score__container">
+          <div class="player__container">
+            <h4 class="player">Player Score</h4>
+            <div class="score__box">
+              <div class="score--0">66</div>
+            </div>
+          </div>
+
+          <div class="player__container">
+            <h4 class="player">Computer Score</h4>
+            <div class="score__box">
+              <div class="score--1">10</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="center--button">
+          <h4 class="score"></h4>
+          <button class="btn--new" type="button">again???</button>
+          <h2 class="winner hidden">  wins!</h4>
+        </section>
+      </div>
+    </main>
+
+    <script src="main.js"></script>
+  </body>
+</html>
